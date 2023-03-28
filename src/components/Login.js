@@ -21,7 +21,7 @@ const Login = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
-              passwordofmy
+              password
             </label>
             <input type="password" className="form-control" id="password" />
           </div>
