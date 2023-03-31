@@ -1,11 +1,44 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+
 
 const Signup = () => {
-  const auth = useSelector((state) => state.auth.auth);
+  
+  const [data, setdata] = useState({
+    username: "",
+    email: "",
+    password: "",
+  });
+  const handle = async () => {
+    const response = await fetch("http://localhost:3030/auth/signup", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        email: data.email,
+        password: data.password,
+        username: data.username,
+      }),
+    });
+
+    const res = await response.json();
+
+    if (!res.error) {
+      localStorage.setItem("authtoken", res.authtoken);
+      window.location.assign("/home");
+    } else {
+      alert(res.error);
+    }
+  };
+  const change = (e) => {
+    setdata({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <div className="container my-4">
-      <form>
+      <form id="form">
         <div className="mb-3">
           <label htmlFor="username" className="form-label">
             UserName
@@ -13,8 +46,10 @@ const Signup = () => {
           <input
             type="text"
             className="form-control"
-            id="username"
-            aria-describedby="emailHelp"
+            name="username"
+            onChange={change}
+            value={data.username}
+            required
           />
         </div>
         <div className="mb-3">
@@ -23,25 +58,28 @@ const Signup = () => {
           </label>
           <input
             type="email"
+            onChange={change}
             className="form-control"
-            id="email"
-            aria-describedby="emailHelp"
+            name="email"
+            value={data.email}
+            required
           />
         </div>
         <div className="mb-3">
           <label htmlFor="password" className="form-label">
             Password
           </label>
-          <input type="password" className="form-control" id="password" />
-        </div>
-        <div className="mb-3 form-check">
           <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
+            type="password"
+            className="form-control"
+            name="password"
+            onChange={change}
+            value={data.password}
+            required
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+
+        <button type="button" className="btn btn-primary" onClick={handle}>
           Submit
         </button>
       </form>

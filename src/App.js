@@ -1,7 +1,8 @@
 import Navbar from "./components/Navbar";
-import { createBrowserRouter, Route, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Home from "./components/Home";
 
 const routes = createBrowserRouter([
   {
@@ -11,11 +12,14 @@ const routes = createBrowserRouter([
       {
         index: true,
         element: <Login />,
-        
       },
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "/home",
+        element: <Home />,
       },
     ],
   },

@@ -1,9 +1,11 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { authaction } from "../store";
 
 const Navbar = () => {
   const auth = useSelector((state) => state.auth.auth);
+  const dispatch = useDispatch();
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -37,7 +39,13 @@ const Navbar = () => {
               Login
             </Link>
           ) : (
-            <Link className="nav-link" to="logout">
+            <Link
+              className="btn btn-primary"
+              onClick={() => {
+                localStorage.removeItem("authtoken");
+                dispatch(authaction.logout());
+              }}
+            >
               Logout
             </Link>
           )}

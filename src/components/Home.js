@@ -1,7 +1,10 @@
-import React from "react";
+import react from "react";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  return <div>Home</div>;
+  const auth = useSelector((state) => state.auth.auth);
+
+  return auth && <div>Home</div>;
 };
 
 export default Home;
