@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileaction } from "../store";
 
 const Userprofile = () => {
+  console.log("hello");
   const dispatch = useDispatch();
   const [edit, setedit] = useState(false);
   const [no, seteno] = useState();
