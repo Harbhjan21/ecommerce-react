@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./Home";
-import { authaction } from "../store";
+import { authaction, profileaction } from "../store";
 
 const Login = () => {
   const auth = useSelector((state) => state.auth.auth);
@@ -10,7 +10,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-  
 
   const handle = async () => {
     const response = await fetch("http://localhost:3030/auth/login", {
@@ -24,10 +23,13 @@ const Login = () => {
       }),
     });
     const res = await response.json();
+    console.log(typeof res.profile);
 
     if (!res.error) {
       dispatch(authaction.login());
       localStorage.setItem("authtoken", res.authtoken);
+      localStorage.setItem("userinfo", JSON.stringify(res.profile));
+      dispatch(profileaction.setprofile(res.profile));
     } else {
       alert(res.error);
     }

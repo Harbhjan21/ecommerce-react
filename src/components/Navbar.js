@@ -39,15 +39,21 @@ const Navbar = () => {
               Login
             </Link>
           ) : (
-            <Link
-              className="btn btn-primary"
-              onClick={() => {
-                localStorage.removeItem("authtoken");
-                dispatch(authaction.logout());
-              }}
-            >
-              Logout
-            </Link>
+            <div>
+              <Link
+                className="btn btn-primary"
+                onClick={() => {
+                  localStorage.removeItem("authtoken");
+                  localStorage.removeItem("userinfo");
+                  dispatch(authaction.logout());
+                }}
+              >
+                Logout
+              </Link>
+              <Link className="btn btn-primary mx-2" to="/userprofile">
+                useprofile
+              </Link>
+            </div>
           )}
 
           {!auth && (
