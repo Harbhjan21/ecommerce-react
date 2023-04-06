@@ -23,7 +23,6 @@ const Login = () => {
       }),
     });
     const res = await response.json();
-    console.log(typeof res.profile);
 
     if (!res.error) {
       dispatch(authaction.login());
