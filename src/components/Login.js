@@ -51,7 +51,7 @@ const Login = () => {
     <div className="container my-4">
       {!auth ? (
         <form>
-          <div className="mb-3">
+          <div className="mb-3" style={{ marginTop: "70px" }}>
             <label htmlFor="email" className="form-label">
               Email address
             </label>
