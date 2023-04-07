@@ -11,7 +11,7 @@ const Navbar = () => {
       <div>
         <nav
           className="navbar fixed-top navbar-expand-lg "
-          style={{ background: "#9ed1c3"}}
+          style={{ background: "#9ed1c3" }}
         >
           <div className="container-fluid">
             <a className="navbar-brand" href="/">
@@ -34,9 +34,28 @@ const Navbar = () => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a className="nav-link active" aria-current="page" href="/">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to="/home"
+                  >
                     Home
-                  </a>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="smartphones">
+                    Smartphone
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link className="dropdown-item" to="laptops">
+                    Laptop
+                  </Link>
+                </li>
+                <li className="nav-link">
+                  <Link className="dropdown-item" to="skincare">
+                    Skincare
+                  </Link>
                 </li>
               </ul>
             </div>

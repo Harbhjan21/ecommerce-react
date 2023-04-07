@@ -20,14 +20,26 @@ const routes = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home />,
+        element: <Home key={"home"} />,
+      },
+      {
+        path: "/smartphones",
+        element: <Home key={"smartphones"} category={"smartphones"} />,
+      },
+      {
+        path: "/laptops",
+        element: <Home key={"laptops"} category={"laptops"} />,
+      },
+      {
+        path: "/skincare",
+        element: <Home key={"skincare"} category={"skincare"} />,
       },
     ],
   },
   {
-    path:'/userprofile',
-    element:<Userprofile/>
-  }
+    path: "/userprofile",
+    element: <Userprofile />,
+  },
 ]);
 
 function App() {

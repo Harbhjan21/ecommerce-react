@@ -4,7 +4,7 @@ import { Productitem } from "./Productitem";
 import Userprofile from "./Userprofile";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const Home = () => {
+const Home = (props) => {
   const auth = useSelector((state) => state.auth.auth);
   const [info, setinfo] = useState({});
   const [loading, setloading] = useState(true);
@@ -42,7 +42,9 @@ const Home = () => {
   useEffect(() => {
     async function check() {
       setloading(true);
-      var data = await fetch("http://localhost:3030/auth/product");
+      var data = await fetch(
+        `http://localhost:3030/auth/product${props.category}`
+      );
 
       data = await data.json();
       const update = {
