@@ -14,7 +14,7 @@ const authslice = createSlice({
 });
 const profileslice = createSlice({
   name: "credentials",
-  initialState: { username: "", email: "", PhoneNo: "" },
+  initialState: { username: "", email: "", PhoneNo: "",search:'' },
   reducers: {
     setprofile(state, action) {
       console.log(action.payload);
@@ -22,6 +22,9 @@ const profileslice = createSlice({
       state.email = action.payload.email;
       state.PhoneNo = action.payload.PhoneNo;
     },
+    setsearch(state,action){
+      state.search = action.payload
+    }
   },
 });
 

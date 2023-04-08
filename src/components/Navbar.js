@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { authaction } from "../store";
+import { authaction, profileaction } from "../store";
 
 const Navbar = () => {
   const auth = useSelector((state) => state.auth.auth);
+  const [query, setquery] = useState("");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      dispatch(profileaction.setsearch(query));
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [query]);
   return (
     <>
       <div>
@@ -28,37 +38,52 @@ const Navbar = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div
-              className="collapse navbar-collapse"
-              id="navbarSupportedContent"
-            >
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <Link
-                    className="nav-link active"
-                    aria-current="page"
-                    to="/home"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="smartphones">
-                    Smartphone
-                  </Link>
-                </li>
-                <li className="nav-link">
-                  <Link className="dropdown-item" to="laptops">
-                    Laptop
-                  </Link>
-                </li>
-                <li className="nav-link">
-                  <Link className="dropdown-item" to="skincare">
-                    Skincare
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {auth && (
+              <div
+                className="collapse navbar-collapse"
+                id="navbarSupportedContent"
+              >
+                <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link active"
+                      aria-current="page"
+                      to="/home"
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="smartphones">
+                      Smartphone
+                    </Link>
+                  </li>
+                  <li className="nav-link">
+                    <Link className="dropdown-item" to="laptops">
+                      Laptop
+                    </Link>
+                  </li>
+                  <li className="nav-link">
+                    <Link className="dropdown-item" to="skincare">
+                      Skincare
+                    </Link>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input
+                    class="form-control me-2"
+                    type="search"
+                    placeholder="Search"
+                    onChange={(e) => {
+                      setquery(e.target.value);
+                    }}
+                  />
+                  <button class="btn btn-outline-success" type="submit">
+                    Search
+                  </button>
+                </form>
+              </div>
+            )}
 
             {!auth ? (
               <Link className="btn btn-primary mx-1" to="/">
@@ -72,6 +97,7 @@ const Navbar = () => {
                     localStorage.removeItem("authtoken");
                     localStorage.removeItem("userinfo");
                     dispatch(authaction.logout());
+                    window.location.assign("/");
                   }}
                 >
                   Logout

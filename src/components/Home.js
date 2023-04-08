@@ -1,11 +1,14 @@
 import react, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Productitem } from "./Productitem";
 import Userprofile from "./Userprofile";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { authaction } from "../store";
 
 const Home = (props) => {
   const auth = useSelector((state) => state.auth.auth);
+  const query = useSelector((state) => state.profile.search);
+  const dispatch = useDispatch();
   const [info, setinfo] = useState({});
   const [loading, setloading] = useState(true);
   const [product, setproduct] = useState({});
@@ -17,7 +20,7 @@ const Home = (props) => {
     setTimeout(() => {
       console.log(info.data);
 
-      const productslice = info.data.products.slice(limit, limit + 7);
+      const productslice = info.data.slice(limit, limit + 7);
 
       const newproductslice = product.productslice.concat(productslice);
 
@@ -47,11 +50,19 @@ const Home = (props) => {
       );
 
       data = await data.json();
+      data = await data.product.products.filter((item) => {
+        if (query == "") return item;
+        if (
+          item.title != "" &&
+          item.title.toLowerCase().includes(query.toLowerCase())
+        )
+          return item;
+      });
       const update = {
-        data: data.product,
+        data: data,
       };
 
-      settotal(data.product.limit);
+      settotal(data.limit);
 
       setinfo({
         ...info,
@@ -60,7 +71,7 @@ const Home = (props) => {
 
       setloading(false);
 
-      const productslice = data.product.products.slice(0, 7);
+      const productslice = data.slice(0, 7);
       console.log(productslice.length);
 
       const newdata = {
@@ -73,8 +84,12 @@ const Home = (props) => {
       });
     }
 
+    if (localStorage.getItem("authtoken")) {
+      dispatch(authaction.login());
+    }
+
     check();
-  }, []);
+  }, [query]);
 
   console.log(product);
 
@@ -85,7 +100,7 @@ const Home = (props) => {
           <InfiniteScroll
             dataLength={product.productslice.length}
             next={fetchmore}
-            hasMore={page <= Math.round(info.data.products.length / limit)}
+            hasMore={page <= Math.round(info.data.length / limit)}
             loader={
               <h1 style={{ textAlign: "center", fontSize: "28px" }}>
                 Loding.....
