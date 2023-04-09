@@ -37,6 +37,7 @@ const Signup = () => {
       dispatch(authaction.login());
     } else {
       alert(res.error);
+      //hello
     }
   };
   const change = (e) => {
