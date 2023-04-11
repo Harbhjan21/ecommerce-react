@@ -68,17 +68,35 @@ const Navbar = () => {
                       Skincare
                     </Link>
                   </li>
+                  <li className="nav-item dropdown">
+                    <a
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    >
+                      Dropdown
+                    </a>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <Link className="dropdown-item" to="cart">
+                          Cart
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
                 </ul>
-                <form class="d-flex" role="search">
+                <form className="d-flex mx-2" role="search">
                   <input
-                    class="form-control me-2"
+                    className="form-control me-2"
                     type="search"
                     placeholder="Search"
                     onChange={(e) => {
                       setquery(e.target.value);
                     }}
                   />
-                  <button class="btn btn-outline-success" type="submit">
+                  <button className="btn btn-outline-success" type="submit">
                     Search
                   </button>
                 </form>
@@ -86,13 +104,22 @@ const Navbar = () => {
             )}
 
             {!auth ? (
-              <Link className="btn btn-primary mx-1" to="/">
-                Login
-              </Link>
+              <div>
+                <Link className="btn btn-primary mx-1 btn-sm" to="/">
+                  Login
+                </Link>
+                <Link
+                  className="btn btn-primary btn-sm"
+                  to="signup"
+                  role="button"
+                >
+                  Signup
+                </Link>
+              </div>
             ) : (
               <div>
                 <Link
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-sm"
                   onClick={() => {
                     localStorage.removeItem("authtoken");
                     localStorage.removeItem("userinfo");
@@ -102,16 +129,10 @@ const Navbar = () => {
                 >
                   Logout
                 </Link>
-                <Link className="btn btn-primary mx-2" to="/userprofile">
+                <Link className="btn btn-primary mx-2 btn-sm" to="/userprofile">
                   useprofile
                 </Link>
               </div>
-            )}
-
-            {!auth && (
-              <Link className="btn btn-primary" to="signup" role="button">
-                Signup
-              </Link>
             )}
           </div>
         </nav>

@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Userprofile from "./components/Userprofile";
+import Cart from "./components/Cart";
 
 const routes = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const routes = createBrowserRouter([
       {
         path: "/skincare",
         element: <Home key={"skincare"} category={"skincare"} />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },

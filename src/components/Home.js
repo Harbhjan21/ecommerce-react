@@ -7,6 +7,7 @@ import { authaction } from "../store";
 
 const Home = (props) => {
   const auth = useSelector((state) => state.auth.auth);
+  const alert = useSelector((state) => state.auth.alert);
   const query = useSelector((state) => state.profile.search);
   const dispatch = useDispatch();
   const [info, setinfo] = useState({});
@@ -18,13 +19,9 @@ const Home = (props) => {
 
   const fetchmore = () => {
     setTimeout(() => {
-      console.log(info.data);
-
       const productslice = info.data.slice(limit, limit + 7);
 
       const newproductslice = product.productslice.concat(productslice);
-
-      console.log(newproductslice);
 
       const newdata = {
         productslice: newproductslice,
@@ -37,8 +34,6 @@ const Home = (props) => {
 
       setlimit(limit + 7);
       setpage(page + 1);
-
-      console.log(page);
     }, 1000);
   };
 
@@ -72,7 +67,6 @@ const Home = (props) => {
       setloading(false);
 
       const productslice = data.slice(0, 7);
-      console.log(productslice.length);
 
       const newdata = {
         productslice,
@@ -91,8 +85,6 @@ const Home = (props) => {
     check();
   }, [query]);
 
-  console.log(product);
-
   return (
     <>
       {!loading && auth && (
@@ -107,6 +99,15 @@ const Home = (props) => {
               </h1>
             }
           >
+            {alert && (
+              <div
+                className="alert alert-success"
+                style={{ marginTop: "8%" }}
+                role="alert"
+              >
+                item added successfully
+              </div>
+            )}
             <div className="container" style={{ marginTop: "70px" }}>
               <div className="row">
                 {product.productslice.map((item) => {

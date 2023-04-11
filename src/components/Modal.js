@@ -1,12 +1,45 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { authaction } from "../store";
 
 const Modala = (props) => {
   const { item } = props;
-  console.log(item.title);
   const [show, setShow] = useState(false);
+  const [data, setdata] = useState({});
+  const [alert, setalert] = useState(false);
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handlecart = async () => {
+    const token = localStorage.getItem("authtoken");
+    const cart = {
+      title: item.title,
+      rating: item.rating,
+      price: item.price,
+      image: item.images[0],
+      discount: item.discountPercentage,
+      stock: item.stock,
+    };
+
+    var data = await fetch("http://localhost:3030/auth/cart", {
+      method: "post",
+      headers: {
+        "content-type": "application/json",
+        token: token,
+      },
+      body: JSON.stringify(cart),
+    });
+    data = await data.json();
+    if (data.success) {
+      dispatch(authaction.alert());
+      handleClose();
+      setTimeout(() => {
+        dispatch(authaction.alert());
+      }, 2500);
+    }
+  };
 
   return (
     <>
@@ -19,73 +52,87 @@ const Modala = (props) => {
           <Modal.Title>DETAIL</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="card" style={{ width: "18rem" }}>
+          <div className="card" style={{ width: "18rem" }}>
             <div
               id="carouselExampleAutoplaying"
-              class="carousel slide"
+              className="carousel slide"
               data-bs-ride="carousel"
             >
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src={item.images[0]} class="d-block w-100" alt="..." />
+              <div className="carousel-inner">
+                <div className="carousel-item active">
+                  <img
+                    src={item.images[0]}
+                    className="d-block w-100"
+                    alt="..."
+                  />
                 </div>
-                <div class="carousel-item">
-                  <img src={item.images[1]} class="d-block w-100" alt="..." />
+                <div className="carousel-item">
+                  <img
+                    src={item.images[1]}
+                    className="d-block w-100"
+                    alt="..."
+                  />
                 </div>
-                <div class="carousel-item">
-                  <img src={item.images[2]} class="d-block w-100" alt="..." />
+                <div className="carousel-item">
+                  <img
+                    src={item.images[2]}
+                    className="d-block w-100"
+                    alt="..."
+                  />
                 </div>
               </div>
               <button
-                class="carousel-control-prev"
+                className="carousel-control-prev"
                 type="button"
                 data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide="prev"
               >
                 <span
-                  class="carousel-control-prev-icon"
+                  className="carousel-control-prev-icon"
                   aria-hidden="true"
                 ></span>
-                <span class="visually-hidden">Previous</span>
+                <span className="visually-hidden">Previous</span>
               </button>
               <button
-                class="carousel-control-next"
+                className="carousel-control-next"
                 type="button"
                 data-bs-target="#carouselExampleAutoplaying"
                 data-bs-slide="next"
               >
                 <span
-                  class="carousel-control-next-icon"
+                  className="carousel-control-next-icon"
                   aria-hidden="true"
                 ></span>
-                <span class="visually-hidden">Next</span>
+                <span className="visually-hidden">Next</span>
               </button>
             </div>
 
-            <div class="card-body">
-              <h5 class="card-title">{item.title}</h5>
-              <p class="card-text">{item.description}</p>
+            <div className="card-body">
+              <h5 className="card-title" id="title">
+                {item.title}
+              </h5>
+              <p className="card-text">{item.description}</p>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
+            <ul className="list-group list-group-flush">
+              <li className="list-group-item">
                 <b>Discount: </b>
                 {item.discountPercentage}%
               </li>
-              <li class="list-group-item">
+              <li className="list-group-item">
                 <b>Rating: </b>
                 {item.rating}
               </li>
-              <li class="list-group-item">
+              <li className="list-group-item">
                 <b>Stock: </b>
                 {item.stock}
               </li>
-              <li class="list-group-item">
+              <li className="list-group-item">
                 <b>Price: </b>
                 {item.price}$
               </li>
             </ul>
-            <div class="card-body">
-              <button type="button" class="btn btn-outline-info">
+            <div className="card-body">
+              <button type="button" className="btn btn-outline-info">
                 BUY NOW
               </button>
             </div>
@@ -95,7 +142,11 @@ const Modala = (props) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <button type="button" class="btn btn-outline-warning">
+          <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={handlecart}
+          >
             ADD TO CART
           </button>
         </Modal.Footer>

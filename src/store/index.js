@@ -2,7 +2,7 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 const authslice = createSlice({
   name: "authantication",
-  initialState: { auth: false },
+  initialState: { auth: false, alert: false, remove: false },
   reducers: {
     login(state) {
       state.auth = true;
@@ -10,21 +10,26 @@ const authslice = createSlice({
     logout(state) {
       state.auth = false;
     },
+    alert(state) {
+      state.alert = !state.alert;
+    },
+    remove(state) {
+      state.remove = !state.remove;
+    },
   },
 });
 const profileslice = createSlice({
   name: "credentials",
-  initialState: { username: "", email: "", PhoneNo: "",search:'' },
+  initialState: { username: "", email: "", PhoneNo: "", search: "" },
   reducers: {
     setprofile(state, action) {
-      console.log(action.payload);
       state.username = action.payload.name;
       state.email = action.payload.email;
       state.PhoneNo = action.payload.PhoneNo;
     },
-    setsearch(state,action){
-      state.search = action.payload
-    }
+    setsearch(state, action) {
+      state.search = action.payload;
+    },
   },
 });
 
