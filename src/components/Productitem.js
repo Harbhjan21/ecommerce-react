@@ -5,6 +5,7 @@ import Modala from "./Modal";
 
 export const Productitem = (props) => {
   const { item } = props;
+  //console.log('prefinal')
   return (
     <div className=" container col-4 my-3">
       <div className="card" style={{ width: "18rem" }}>

@@ -10,7 +10,7 @@ const Login = () => {
     email: "",
     password: "",
   });
-
+  //console.log('prefinal')
   const handle = async () => {
     const response = await fetch("http://localhost:3030/auth/login", {
       method: "post",

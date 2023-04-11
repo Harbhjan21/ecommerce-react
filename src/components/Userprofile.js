@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { profileaction } from "../store";
 
 const Userprofile = () => {
-
   const dispatch = useDispatch();
   const [edit, setedit] = useState(false);
   const [no, seteno] = useState();
   const profile = useSelector((state) => state.profile);
+  //console.log('prefinal')
 
   const handle = async () => {
     const res = await fetch("http://localhost:3030/auth/update", {

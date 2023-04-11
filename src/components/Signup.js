@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authaction, profileaction } from "../store";
 import Home from "./Home";
@@ -54,6 +54,7 @@ const Signup = () => {
       dispatch(authaction.login());
     }
   }, []);
+  //console.log('prefinal')
   return (
     <>
       {auth ? (
