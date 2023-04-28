@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Home from "./Home";
 import { authaction, profileaction } from "../store";
+import Showm from "./Showm";
 
 const Login = () => {
   const auth = useSelector((state) => state.auth.auth);
@@ -82,7 +83,7 @@ const Login = () => {
           </button>
         </form>
       ) : (
-        <Home />
+        <Showm />
       )}
     </div>
   );

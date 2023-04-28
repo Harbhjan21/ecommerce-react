@@ -12,12 +12,12 @@ const Cart = () => {
   const reload = useSelector((state) => state.auth.remove);
 
   const totalprice = () => {
-
     var ans = 0;
-    data.cart.map((item) => {
-      ans = ans + parseInt(item.price);
-    
-    });
+    if (data) {
+      data.cart.map((item) => {
+        ans = ans + parseInt(item.price);
+      });
+    }
     settotal(ans);
   };
 
@@ -35,7 +35,7 @@ const Cart = () => {
       });
 
       const data = await response.json();
-    
+      console.log(data);
 
       if (data.success == true) {
         const update = {
@@ -47,12 +47,11 @@ const Cart = () => {
           ...update,
         });
       } else {
-       
         setpro(true);
+        console.log("pro");
       }
 
       setloading(false);
-    
     };
 
     fetchdata();

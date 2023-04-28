@@ -5,6 +5,7 @@ import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Userprofile from "./components/Userprofile";
 import Cart from "./components/Cart";
+import Showm from "./components/Showm";
 
 const routes = createBrowserRouter([
   {
@@ -21,7 +22,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/home",
-        element: <Home key={"home"} />,
+        element: <Showm />,
       },
       {
         path: "/smartphones",
@@ -36,7 +37,7 @@ const routes = createBrowserRouter([
         element: <Home key={"skincare"} category={"skincare"} />,
       },
       {
-        path: "cart",
+        path: "/cart",
         element: <Cart />,
       },
     ],
