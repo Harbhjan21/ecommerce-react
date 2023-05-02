@@ -3,6 +3,7 @@ import Cartitem from "./Cartitem";
 import Carttotal from "./Carttotal";
 import { useSelector } from "react-redux";
 import Check from "./Check";
+import Payment from "./Stripe/Payment";
 
 const Cart = () => {
   const [data, setdata] = useState();
@@ -10,6 +11,7 @@ const Cart = () => {
   const [loading, setloading] = useState(true);
   const [total, settotal] = useState(0);
   const reload = useSelector((state) => state.auth.remove);
+  const card = useSelector((state) => state.profile.card);
 
   const totalprice = () => {
     var ans = 0;
@@ -65,6 +67,8 @@ const Cart = () => {
     <>
       {pro ? (
         <Check />
+      ) : card ? (
+        <Payment />
       ) : (
         !loading &&
         !pro && (

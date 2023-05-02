@@ -6,7 +6,7 @@ const Abc = (props) => {
     <div
       style={{
         display: "inline-block",
-        marginInline: "3%",
+        marginInline: "1%",
       }}
     >
       <img height={400} width={500} src={props.url}></img>

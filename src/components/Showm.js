@@ -1,6 +1,5 @@
 import React from "react";
 import Abc from "./Abc.js";
-import Bcd from "./Bcd.js";
 import Footer from "./Footer.js";
 
 const Showm = () => {

@@ -10,8 +10,8 @@ const Footer = () => {
         width: "100%",
       }}
     >
-      <div className="col" style={{ color: "white" }}>
-        <li>contact : +919283749273</li>
+      <div className="col" style={{ color: "white", opacity: "90%" }}>
+        <li>Contact : +919283749273</li>
         <li>gmail : shunydhilio@gmail.com</li>
         <li>help</li>
         <li>about</li>

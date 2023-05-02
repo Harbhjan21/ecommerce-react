@@ -6,6 +6,9 @@ import Home from "./components/Home";
 import Userprofile from "./components/Userprofile";
 import Cart from "./components/Cart";
 import Showm from "./components/Showm";
+import Payment from "./components/Stripe/Payment";
+import { Success } from "./components/Stripe/Success";
+import Cancle from "./components/Stripe/Cancle";
 
 const routes = createBrowserRouter([
   {
@@ -45,6 +48,14 @@ const routes = createBrowserRouter([
   {
     path: "/userprofile",
     element: <Userprofile />,
+  },
+  {
+    path: "/success",
+    element: <Success />,
+  },
+  {
+    path: "cancle",
+    element: <Cancle />,
   },
 ]);
 
