@@ -53,7 +53,7 @@ export default function CheckoutForm() {
       // Show error in payment form
     } else {
       // Otherwise send paymentMethod.id to your server (see Step 4)
-      const res = await fetch("http://localhost:3030/auth/payment", {
+      const res = await fetch("http://13.235.69.72:3030/auth/payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -90,7 +90,7 @@ export default function CheckoutForm() {
         // The card action has been handled
         // The PaymentIntent can be confirmed again on the server
         const serverResponse = await fetch(
-          "http://localhost:3030/auth/payment",
+          "http://13.235.69.72:3030/auth/payment",
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

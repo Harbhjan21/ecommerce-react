@@ -14,7 +14,7 @@ const Signup = () => {
     PhoneNo: "",
   });
   const handle = async () => {
-    const response = await fetch("http://localhost:3030/auth/signup", {
+    const response = await fetch("http://13.235.69.72:3030/auth/signup", {
       method: "post",
       headers: {
         "content-type": "application/json",
@@ -37,6 +37,7 @@ const Signup = () => {
       dispatch(authaction.login());
     } else {
       alert(res.error);
+      console.log(res.error);
       //hello
     }
   };

@@ -41,7 +41,7 @@ const Home = (props) => {
     async function check() {
       setloading(true);
       var data = await fetch(
-        `http://localhost:3030/auth/product${props.category}`
+        `http://13.235.69.72:3030/auth/product${props.category}`
       );
 
       data = await data.json();

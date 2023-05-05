@@ -23,7 +23,7 @@ const Modala = (props) => {
       stock: item.stock,
     };
 
-    var data = await fetch("http://localhost:3030/auth/cart", {
+    var data = await fetch("http://13.235.69.72:3030/auth/cart", {
       method: "post",
       headers: {
         "content-type": "application/json",

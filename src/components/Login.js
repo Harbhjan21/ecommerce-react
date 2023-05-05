@@ -13,7 +13,7 @@ const Login = () => {
   });
   //console.log('prefinal')
   const handle = async () => {
-    const response = await fetch("http://localhost:3030/auth/login", {
+    const response = await fetch("http://13.235.69.72:3030/auth/login", {
       method: "post",
       headers: {
         "content-type": "application/json",

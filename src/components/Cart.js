@@ -28,7 +28,7 @@ const Cart = () => {
       setloading(true);
       const token = localStorage.getItem("authtoken");
 
-      const response = await fetch("http://localhost:3030/auth/cartdetail", {
+      const response = await fetch("http://13.235.69.72:3030/auth/cartdetail", {
         method: "post",
         headers: {
           "content-type": "application/json",

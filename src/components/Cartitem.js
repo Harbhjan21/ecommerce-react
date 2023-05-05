@@ -9,7 +9,7 @@ const Cartitem = (props) => {
   const token = localStorage.getItem("authtoken");
 
   const remove = async () => {
-    var data = await fetch("http://localhost:3030/auth/cartdelete", {
+    var data = await fetch("http://13.235.69.72:3030/auth/cartdelete", {
       method: "post",
       headers: { "content-type": "application/json", token: token },
       body: JSON.stringify({ id: item._id }),
