@@ -10,7 +10,7 @@ const Userprofile = () => {
   //console.log('prefinal')
 
   const handle = async () => {
-    const res = await fetch("http://13.235.69.72:3030/auth/update", {
+    const res = await fetch("https://ecommerce-server-nodejs.vercel.app/auth/update", {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

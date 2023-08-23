@@ -13,16 +13,19 @@ const Login = () => {
   });
   //console.log('prefinal')
   const handle = async () => {
-    const response = await fetch("http://13.235.69.72:3030/auth/login", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-      }),
-    });
+    const response = await fetch(
+      "https://ecommerce-server-nodejs.vercel.app/auth/login",
+      {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+        }),
+      }
+    );
     const res = await response.json();
 
     if (!res.error) {

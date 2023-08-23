@@ -41,7 +41,7 @@ const Home = (props) => {
     async function check() {
       setloading(true);
       var data = await fetch(
-        `http://13.235.69.72:3030/auth/product${props.category}`
+        `https://ecommerce-server-nodejs.vercel.app/auth/product${props.category}`
       );
 
       data = await data.json();

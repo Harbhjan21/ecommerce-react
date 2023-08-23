@@ -14,18 +14,21 @@ const Signup = () => {
     PhoneNo: "",
   });
   const handle = async () => {
-    const response = await fetch("http://13.235.69.72:3030/auth/signup", {
-      method: "post",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.email,
-        password: data.password,
-        username: data.username,
-        PhoneNo: data.PhoneNo,
-      }),
-    });
+    const response = await fetch(
+      "https://ecommerce-server-nodejs.vercel.app/auth/signup",
+      {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          email: data.email,
+          password: data.password,
+          username: data.username,
+          PhoneNo: data.PhoneNo,
+        }),
+      }
+    );
 
     const res = await response.json();
     console.log(res.profile);
